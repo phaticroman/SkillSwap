@@ -127,3 +127,9 @@ STATICFILES_DIRS = [
     "/var/www/static/",
 ]
 AUTH_USER_MODEL = 'account.CustomUser'
+LOGOUT_REDIRECT_URL = 'loginPage'
+
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -1,0 +1,26 @@
+{% extends "common/base.html" %}
+
+{% block body %}
+<div class="container" style="max-width: 700px; margin: 2rem auto; background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+  <h2 style="text-align: center; margin-bottom: 2rem;">{{profile.user.first_name}}'s</h2>
+
+  <div style="text-align: center;">
+    {% if profile.profile_picture %}
+    <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" style="width:150px; height:150px;">
+    {% else %}
+    <img src="https://via.placeholder.com/150" alt="Default Profile">
+    {% endif %}
+  </div>
+
+  <div style="font-size: 1.1rem; line-height: 2;">
+
+    <p><strong>Name:</strong> {{ profile.user.first_name }} {{ profile.user.last_name }}</p>
+    <p><strong>Email:</strong> {{ profile.user.email|default:"N/A" }}</p>
+    <p><strong>User Type:</strong> {{ profile.user.user_type }}</p>
+  </div>
+
+  <div style="text-align: center; margin-top: 2rem;">
+    <a href="{% url "editProfilePage" %}" class="btn" style="padding: 0.6rem 1.2rem; background-color: #4a90e2; color: white; border-radius: 6px; text-decoration: none;">Edit Profile</a>
+  </div>
+</div>
+{% endblock %}

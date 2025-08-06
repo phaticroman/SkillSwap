@@ -1,0 +1,34 @@
+{% extends "common/base.html" %}
+
+{% block body %}
+<div class="container" style="max-width: 700px; margin: 2rem auto; background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+  <h2 style="text-align: center; margin-bottom: 2rem;">Edit Profile</h2>
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="first_name"><strong>First Name</strong></label>
+    <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;">
+
+    <label for="last_name"><strong>Last Name</strong></label>
+    <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;">
+
+    <label for="bio"><strong>Bio</strong></label>
+    <textarea id="bio" name="bio" rows="4" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;">{{ memberprofile.bio }}</textarea>
+
+    <label><strong>Current Profile Picture</strong></label><br>
+    {% if memberprofile.profile_picture %}
+      <img src="{{ memberprofile.profile_picture.url }}" alt="Profile Picture" style="width:100px; height:100px; object-fit: cover; border-radius: 50%; margin-bottom: 1rem;"><br>
+    {% else %}
+      <img src="https://via.placeholder.com/100" alt="Default Profile" style="margin-bottom: 1rem;"><br>
+    {% endif %}
+
+    <label for="profile_picture"><strong>Upload New Picture</strong></label>
+    <input type="file" id="profile_picture" name="profile_picture" accept="image/*" style="margin-bottom: 1.5rem;"><br>
+
+    <div style="text-align: center;">
+      <button type="submit" style="padding: 0.6rem 1.5rem; background-color: #4a90e2; color: white; border: none; border-radius: 6px;">Save Changes</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
