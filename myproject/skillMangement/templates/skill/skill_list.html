@@ -1,0 +1,26 @@
+{% extends "common/base.html" %}
+
+{% block body %}
+<div class="container" style="max-width: 1100px; margin: 2rem auto;">
+  <h2 style="text-align: center; margin-bottom: 2rem;">🛠️ Skills Gallery</h2>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+    {% for skill in skills %}
+    <div style="width: 280px; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: 0.3s;">
+      {% if skill.skil_pic %}
+      <img src="{{ skill.skil_pic.url }}" alt="{{ skill.skill_name }}" style="width: 100%; height: 160px; object-fit: cover;">
+      {% else %}
+      <img src="https://via.placeholder.com/280x160?text=No+Image" alt="No Image" style="width: 100%; height: 160px;">
+      {% endif %}
+      <div style="padding: 1rem;">
+        <h3 style="margin: 0 0 0.5rem;">{{ skill.skill_name }}</h3>
+        <p style="margin: 0 0 0.5rem; color: #666;">Duration: {{ skill.duration }}</p>
+        <a href="{% url 'skillDetail' skill.id %}" style="text-decoration: none; color: #4a90e2;">View Details →</a>
+      </div>
+    </div>
+    {% empty %}
+    <p>No skills available.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

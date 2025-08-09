@@ -46,16 +46,8 @@
         {% endfor %}
       </ul>
     {% else %}
-      <p>You haven’t added any desired skills yet.</p>
+      <p>User haven’t added any desired skills yet.</p>
     {% endif %}
   </div>
-
-  <!-- Edit Button -->
-  <div style="text-align: center; margin-top: 2rem;">
-    <a href="{% url "editProfilePage" %}" class="btn" style="padding: 0.6rem 1.2rem; background-color: #4a90e2; color: white; border-radius: 6px; text-decoration: none;">
-      Edit Profile
-    </a>
-  </div>
-
 </div>
 {% endblock %}

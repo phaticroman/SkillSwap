@@ -1,0 +1,25 @@
+{% extends "common/base.html" %}
+
+{% block body %}
+<div class="container" style="max-width: 600px; margin: 3rem auto; background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+  
+  <h2 style="text-align: center; margin-bottom: 1.5rem;">📝 Skill You Want to Learn</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+    
+    <div style="margin-bottom: 1.2rem;">
+      <label for="skill_name" style="display: block; font-weight: bold; margin-bottom: 0.5rem;">Skill Name:</label>
+      <input type="text" id="skill_name" name="skill_name" placeholder="e.g. Machine Learning, React Native..." required
+        style="width: 100%; padding: 0.6rem; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem;">
+    </div>
+
+    <div style="text-align: center;">
+      <button type="submit" style="padding: 0.7rem 1.5rem; background-color: #4a90e2; color: #fff; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer;">
+        Submit
+      </button>
+    </div>
+  </form>
+
+</div>
+{% endblock %}

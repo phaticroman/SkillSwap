@@ -49,17 +49,19 @@
 </head>
 <body>
   <div class="navbar">
-    <div class="brand">🏥 MyHospital</div>
+    <div class="brand">Skil Share</div>
     <div class="nav-links">
-      <a href="{% url 'homePage' %}">Home</a>
+      <a href="{% url 'skillList' %}">Feed</a>
       <a href="{% url "profilePage" %}">Profile</a>
-      <a href="#">Appointments</a>
+      <a href="{% url "createSkill" %}">Post Skills</a>
+      <a href="{% url "skillWanted" %}">Skills Wanted</a>
+      <a href="{% url "matchskill" %}">matchskill</a>
       <a href="{% url 'loginPage' %}">Logout</a>
     </div>
   </div>
 
   <div class="content">
-    <h1>Welcome, {{ request.user.first_name }}!</h1>
+    <h1>Welcome, {{ request.user.last_name }}!</h1>
     {% block body %}{% endblock body %}
   </div>
 </body>

@@ -1,0 +1,27 @@
+{% extends "common/base.html" %}
+
+{% block body %}
+<div class="container" style="max-width: 600px; margin: 2rem auto; background: #fff; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
+  <h2 style="text-align: center; margin-bottom: 1.5rem;">➕ Add New Skill</h2>
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label for="skill_name"><strong>Skill Name</strong></label>
+    <input type="text" id="skill_name" name="skill_name" required placeholder="e.g., Python, Cooking, Design" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border-radius: 6px; border: 1px solid #ccc;">
+
+    <label for="skill_name"><strong>Skill Duration</strong></label>
+    <input type="text" id="skill_name" name="duration" required placeholder="e.g.,2-4 months" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border-radius: 6px; border: 1px solid #ccc;">
+
+    <label for="description"><strong>Description</strong></label>
+    <textarea id="description" name="description" rows="4" placeholder="Write a short description of your skill" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem; border-radius: 6px; border: 1px solid #ccc;"></textarea>
+
+    <label for="skil_pic"><strong>Skill Image (optional)</strong></label><br>
+    <input type="file" id="skil_pic" name="skil_pic" accept="image/*" style="margin-bottom: 1.5rem;"><br>
+
+    <div style="text-align: center;">
+      <button type="submit" style="padding: 0.6rem 1.5rem; background-color: #4a90e2; color: white; border: none; border-radius: 6px;">Add Skill</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

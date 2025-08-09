@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth import authenticate,login,logout
 from .models import CustomUser,MemberProfile
 from django.http import HttpResponse
-
+from skillMangement.models import UserSkill,UserWantToLearn
 
 
 
@@ -51,42 +51,31 @@ def homePage(request):
 def profilePage(request):
     current_user = request.user
     profile = get_object_or_404(MemberProfile,user=current_user)
-    return render(request,'UserInfo/profilePage.html',{'profile':profile})
+    user_skills = UserSkill.objects.filter(user=current_user)
+    user_want_skill = UserWantToLearn.objects.filter(user = current_user)
+    return render(request,'UserInfo/profilePage.html',{'profile':profile,'user_skills':user_skills,'user_want_skill':user_want_skill})
 
-
-def editProfilePage(request):
-    current_user = request.user
-    
-    if request.method == 'POST':
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        bio = request.POST.get('bio')
-        profile_picture = request.FILES.get('profile_picture')
-        profile = CustomUser.objects.get_or_create(user = current_user,first_name=first_name,last_name=last_name,profile_picture=profile_picture)
-        memberprofile = MemberProfile.objects.get_or_create(user = current_user,bio=bio,)
-        profile.save()
-        memberprofile.save()
-        return redirect('profilePage')
         
 def editProfilePage(request):
     current_user = request.user
     memberprofile, created = MemberProfile.objects.get_or_create(user=current_user)
 
     if request.method == 'POST':
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        bio = request.POST.get('bio')
-        profile_picture = request.FILES.get('profile_picture')
+        if request.user:
+            first_name = request.POST.get('first_name')
+            last_name = request.POST.get('last_name')
+            bio = request.POST.get('bio')
+            profile_picture = request.FILES.get('profile_picture')
 
-        current_user.first_name = first_name
-        current_user.last_name = last_name
-        current_user.save()
+            current_user.first_name = first_name
+            current_user.last_name = last_name
+            current_user.save()
 
 
-        memberprofile.bio = bio
-        if profile_picture:
-            memberprofile.profile_picture = profile_picture
-        memberprofile.save()
+            memberprofile.bio = bio
+            if profile_picture:
+                memberprofile.profile_picture = profile_picture
+            memberprofile.save()
 
         return redirect('profilePage')
 
